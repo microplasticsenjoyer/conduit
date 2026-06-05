@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "Conduit",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./dist/_worker.js/index.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "vars": {
+    "SUPABASE_URL": "https://REPLACE_ME.supabase.co",
+    "SUPABASE_ANON_KEY": "REPLACE_ME",
+    "EVE_CLIENT_ID": "REPLACE_ME",
+    "EVE_CORP_ID": "REPLACE_ME",
+    // Comma-separated character IDs allowed to approve/reject SRP losses,
+    // edit the trust fund, and other leadership writes. Empty or unset =
+    // no one can write (read-only mode). Closed by default — fail-secure.
+    "EVE_LEADERSHIP_IDS": "REPLACE_ME",
+    // Discord application + guild for the Profile tab's role sync. Fill these
+    // in after creating the Discord app (see CLAUDE.md or README setup notes).
+    "DISCORD_CLIENT_ID": "REPLACE_ME",
+    "DISCORD_GUILD_ID": "REPLACE_ME"
+  }
+  // Secrets (set via wrangler secret put):
+  //   SUPABASE_SERVICE_KEY
+  //   DISCORD_CLIENT_SECRET    — Discord OAuth client secret (for /api/discord/link)
+  //   DISCORD_BOT_TOKEN        — Discord bot token (for guild role writes)
+  //   CRON_SECRET              — shared secret guarding the Phase 2 sweep endpoint
+}
