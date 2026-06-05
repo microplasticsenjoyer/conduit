@@ -1,0 +1,27 @@
+{
+  "name": "Conduit",
+  "version": "0.18.0",
+  "description": "EVE Online corp toolkit — appraiser, LP store, SRP, doctrine inventory, alliance finances, Discord role sync — Cloudflare Workers + Supabase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:client": "vite build",
+    "build:functions": "wrangler pages functions build --outdir=./dist/_worker.js/",
+    "build:assetsignore": "node -e \"require('fs').copyFileSync('.assetsignore','dist/.assetsignore')\"",
+    "build": "npm run build:client && npm run build:functions && npm run build:assetsignore",
+    "dev": "wrangler dev",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240529.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.3.4",
+    "wrangler": "^4.0.0"
+  }
+}
