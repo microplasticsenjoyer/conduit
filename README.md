@@ -34,8 +34,7 @@ EVE/Supabase/Discord setup, Cloudflare deploy, config-value reference, full
 project structure / database schema / API surface, and troubleshooting — lives
 in **[docs/INSTALL.md](docs/INSTALL.md)**.
 
-This README covers what Conduit *is*; the install guide covers how to build it.
-
+The best part about this? You can run your own instance completely free. No VPS needed!
 ---
 
 ## Table of contents
