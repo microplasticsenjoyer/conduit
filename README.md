@@ -49,6 +49,22 @@ The best part about this? You can run your own instance completely free. No VPS 
 
 ---
 
+## Screenshots
+
+<img src="docs/Screenshot_20260605_140637.png" alt="Conduit screenshot" width="800">
+
+*LP Store view - w/ selectable faction(s) and "hot" items*
+
+<img src="docs/Screenshot_20260605_140901.png" alt="Conduit screenshot" width="800">
+
+*Appraisal view - the original concept of this project, similar to evepraisal/janice with some added features*
+
+<img src="docs/Screenshot_20260605_140953.png" alt="Conduit screenshot" width="800">
+
+*Inventory->Stock Status view - highlights ships that are currently in stock within Corp Contracts*
+
+---
+
 ## Features
 
 **Access tiers:**
