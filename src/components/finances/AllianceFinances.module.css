@@ -1,0 +1,13 @@
+/* Constrain Alliance Finances content to a comfortable reading width so
+ * tables, panels, and stat cards center inside the 1500px wide layout
+ * instead of stretching edge-to-edge. */
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sub {
+  margin-bottom: 18px;
+}

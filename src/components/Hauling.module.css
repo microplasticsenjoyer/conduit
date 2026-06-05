@@ -1,0 +1,559 @@
+/* ── Controls ──────────────────────────────────────────────────────────── */
+
+.controls {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.shipGroup {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.costGroup {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.labelHint {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.select {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  min-width: 240px;
+  transition: border-color 0.15s;
+}
+
+.select:focus { outline: none; border-color: var(--accent-dim); }
+
+.numInput {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  width: 120px;
+  transition: border-color 0.15s;
+}
+
+.numInput:focus { outline: none; border-color: var(--accent-dim); }
+.numInput::-webkit-inner-spin-button,
+.numInput::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.numInput[type=number] { -moz-appearance: textfield; }
+
+/* ── Status ─────────────────────────────────────────────────────────────── */
+
+.loading {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  padding: 16px 0;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.error {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--danger);
+  border: 1px solid rgba(255,80,80,0.3);
+  background: rgba(255,80,80,0.06);
+  padding: 10px 14px;
+  margin: 8px 0;
+}
+
+/* ── Summary cards ───────────────────────────────────────────────────────── */
+
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--border);
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px;
+  gap: 4px;
+  background: var(--bg-panel, #0a0e14);
+}
+
+.cardLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.cardValue {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-bright);
+  font-weight: 600;
+}
+
+.cardValueSell { color: var(--sell) !important; }
+
+.cardSub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Cargo card with progress bar */
+.cargoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px;
+  gap: 6px;
+  background: var(--bg-panel, #0a0e14);
+}
+
+.progressBarWrap {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  max-width: 100%;
+}
+
+/* ── Multi-trip breakdown ────────────────────────────────────────────────── */
+
+.tripBreakdown {
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.15);
+  margin-bottom: 12px;
+}
+
+.tripRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.tripRow:last-child { border-bottom: none; }
+
+.tripLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  min-width: 48px;
+}
+
+.tripStat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  color: var(--text);
+  min-width: 80px;
+}
+
+.tripStatLabel {
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.tripBarWrap {
+  flex: 1;
+  min-width: 80px;
+  height: 4px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.tripBarFill {
+  height: 100%;
+  background: var(--accent);
+  max-width: 100%;
+}
+
+.tripBarPct {
+  font-size: 10px;
+  color: var(--text-dim);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ── Saved plans bar ─────────────────────────────────────────────────────── */
+
+.plansBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.plansLabel {
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  font-size: 10px;
+}
+.plansSelect {
+  background: rgba(0,0,0,0.4);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 5px 8px;
+  min-width: 200px;
+}
+.plansBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.plansBtn:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); }
+.plansBtn:disabled { opacity: 0.5; cursor: default; }
+.plansBtnDanger { color: var(--danger); border-color: rgba(255,68,68,0.4); }
+.plansBtnDanger:hover:not(:disabled) { color: #fff; background: rgba(255,68,68,0.2); border-color: var(--danger); }
+.plansErr { color: var(--danger); font-size: 11px; margin-left: auto; }
+
+/* ── Empty / first-run state ─────────────────────────────────────────────── */
+
+.firstRun {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  padding: 18px 22px;
+  margin: 14px 0;
+  font-family: var(--font-mono);
+}
+.firstRunTitle {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.firstRunSteps {
+  margin: 0;
+  padding-left: 22px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+.firstRunSteps li { margin: 4px 0; }
+.firstRunSteps strong { color: var(--accent); font-weight: 600; }
+.firstRunHint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.firstRunHint strong { color: var(--accent); }
+
+/* ── Warning banner ──────────────────────────────────────────────────────── */
+
+.warnBanner {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #ffb84d;
+  background: rgba(255,152,0,0.07);
+  border: 1px solid rgba(255,152,0,0.35);
+  padding: 8px 12px;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+/* ── Table toolbar ───────────────────────────────────────────────────────── */
+
+.tableToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+
+.wrapper { border: 1px solid var(--border); overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.table thead { background: rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1; }
+
+.table th {
+  padding: 10px 12px;
+  text-align: right;
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.table th:hover { color: var(--accent); }
+
+.thName  { text-align: left !important; }
+.thNum   { text-align: right; }
+.thHighlight { color: var(--accent) !important; }
+.thCargo { text-align: center !important; width: 80px; }
+
+.table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+.table tbody tr:hover { background: rgba(0,200,255,0.04); }
+
+.tdName { text-align: left; color: var(--text); max-width: 280px; }
+.tdNum  { text-align: right; color: var(--text); white-space: nowrap; }
+.tdCargo { text-align: center; }
+
+.sell    { color: var(--sell)   !important; }
+.danger  { color: var(--danger) !important; }
+.highlight { font-weight: bold; font-size: 14px; }
+
+.link { color: var(--text); text-decoration: none; transition: color 0.15s; }
+.link:hover { color: var(--accent); text-decoration: underline; }
+
+/* ── Row states ──────────────────────────────────────────────────────────── */
+
+.rowInCargo { background: rgba(0,230,118,0.04) !important; }
+.rowPartial { background: rgba(255,152,0,0.04) !important; }
+.rowUnprofitable { opacity: 0.45; }
+.rowThinMargin { background: rgba(255,152,0,0.07) !important; }
+
+.inCargoCheck { color: var(--sell); font-weight: bold; font-size: 14px; }
+.partialCheck { color: #ffb84d; font-size: 11px; font-family: var(--font-mono); }
+
+/* ── Mode toggle ─────────────────────────────────────────────────────────── */
+
+.modeToggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+}
+
+.modeBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.modeBtn:hover { color: var(--text); }
+.modeBtn + .modeBtn { border-left: 1px solid var(--border); }
+
+.modeBtnActive {
+  color: var(--accent) !important;
+  background: rgba(0, 200, 255, 0.07);
+}
+
+/* ── Toolbar buttons ─────────────────────────────────────────────────────── */
+
+.toolbarBtns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.toggleBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.toggleBtn:hover:not(:disabled) { border-color: var(--accent-dim); color: var(--text); }
+.toggleBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.toggleBtnActive {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: rgba(0, 200, 255, 0.07);
+}
+
+.slugBadge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+}
+
+/* ── Ship info card ──────────────────────────────────────────────────────── */
+
+.shipInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: baseline;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  background: rgba(0, 200, 255, 0.03);
+  padding: 8px 14px;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.shipInfoName {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.shipInfoStat {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  color: var(--text);
+}
+
+.shipInfoLabel {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Depth badge on item rows ───────────────────────────────────────────── */
+
+.depthBadge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #ffb84d;
+  background: rgba(255, 152, 0, 0.07);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+/* ── Left-behind / dropped panel ────────────────────────────────────────── */
+
+.droppedPanel {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.droppedHeader {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.droppedRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  padding: 4px 0;
+}
+
+.droppedLabel {
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  min-width: 130px;
+}
+
+.droppedItem {
+  color: var(--text);
+}
+
+.droppedQty {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.droppedMore {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .summaryCards { grid-template-columns: repeat(2, 1fr); }
+  .shipGroup, .costGroup { width: 100%; }
+  .select { min-width: 0; width: 100%; }
+  .numInput { width: 88px; }
+}

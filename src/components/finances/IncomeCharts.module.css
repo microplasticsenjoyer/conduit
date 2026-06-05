@@ -1,0 +1,114 @@
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 100px;
+}
+
+/* Stacked bar chart */
+.bars {
+  display: block;
+  width: 100%;
+}
+.axis {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.axisLabel {
+  fill: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.barInflow  { fill: var(--sell); opacity: 0.78; }
+.barInflow:hover  { opacity: 1; }
+.barOutflow { fill: var(--danger); opacity: 0.78; }
+.barOutflow:hover { opacity: 1; }
+.netDotPos { fill: var(--sell); stroke: var(--bg-panel); stroke-width: 1; }
+.netDotNeg { fill: var(--danger); stroke: var(--bg-panel); stroke-width: 1; }
+
+/* Cumulative balance line */
+.line {
+  display: block;
+  width: 100%;
+}
+.lineUp   { color: var(--sell); }
+.lineDown { color: var(--danger); }
+
+/* Donuts */
+.donutRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.donutWrap {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.donutTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.donutBody {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.donutCenter {
+  fill: var(--text-bright);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+.donutCenterSub {
+  fill: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.legend li {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(46, 74, 94, 0.2);
+}
+.legend li:last-child { border-bottom: none; }
+.swatch {
+  width: 8px;
+  height: 8px;
+  display: block;
+  border-radius: 1px;
+}
+.legendCat {
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.legendAmt {
+  color: var(--text-dim);
+  text-align: right;
+}

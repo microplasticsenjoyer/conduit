@@ -1,0 +1,48 @@
+:root {
+  --bg: #0a0c0f;
+  --bg-panel: #0e1117;
+  --bg-input: #060809;
+  --border: #1e2a36;
+  --border-bright: #2e4a5e;
+  --accent: #00c8ff;
+  --accent-dim: #007fa8;
+  --accent-glow: rgba(0, 200, 255, 0.12);
+  --sell: #00e676;
+  --sell-dim: #00a152;
+  --buy: #ff9800;
+  --buy-dim: #b26a00;
+  --danger: #ff4444;
+  --text: #d6e2ec;
+  --text-dim: #5a7a8a;
+  --text-bright: #eaf4fc;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-ui: "Rajdhani", sans-serif;
+  --ui-zoom: 1;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Desktop-only readability bump — most component sizes are hardcoded in px,
+   so we scale the whole tree instead of touching each rule. Mobile already
+   reads well at 1x. Viewport-height rules must divide by --ui-zoom (see
+   .app in App.module.css) since zoom multiplies painted box sizes. */
+@media (min-width: 768px) {
+  :root { --ui-zoom: 1.25; }
+  body { zoom: var(--ui-zoom); }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+::selection { background: var(--accent-dim); color: var(--text-bright); }

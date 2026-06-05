@@ -1,0 +1,837 @@
+/* ── Layout ────────────────────────────────────────────────────────────── */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.topBarActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────── */
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  padding: 7px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) { background: var(--accent-glow); border-color: var(--accent); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btnDanger {
+  border-color: rgba(255,68,68,0.4);
+  color: var(--danger);
+}
+.btnDanger:hover:not(:disabled) { background: rgba(255,68,68,0.08); border-color: var(--danger); }
+
+.btnSuccess {
+  border-color: rgba(0,230,118,0.4);
+  color: var(--sell);
+}
+.btnSuccess:hover:not(:disabled) { background: rgba(0,230,118,0.1); border-color: var(--sell); }
+
+.btnGhost {
+  border-color: var(--border);
+  color: var(--text-dim);
+}
+.btnGhost:hover:not(:disabled) { background: rgba(255,255,255,0.04); border-color: var(--border-bright); color: var(--text); }
+
+/* ── Small action buttons (approve/reject in table) ─────────────────────── */
+
+.btnSm {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 3px 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s, color 0.1s;
+  line-height: 1;
+}
+.btnSm:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btnApprove {
+  border-color: rgba(0,230,118,0.35);
+  color: var(--sell);
+}
+.btnApprove:hover:not(:disabled) { background: rgba(0,230,118,0.1); border-color: var(--sell); }
+
+.btnReject {
+  border-color: rgba(255,68,68,0.35);
+  color: var(--danger);
+}
+.btnReject:hover:not(:disabled) { background: rgba(255,68,68,0.08); border-color: var(--danger); }
+
+.actionBtns {
+  display: flex;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+/* ── Sub-tabs (Current / Historic) ─────────────────────────────────────── */
+
+.tabBar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-dim);
+  padding: 7px 18px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.tab:hover { color: var(--text); }
+.tabActive  { color: var(--accent); border-bottom-color: var(--accent); }
+
+.tabCount {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  background: rgba(0,200,255,0.1);
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ── Scrollable table wrapper ───────────────────────────────────────────── */
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Fleet list table ───────────────────────────────────────────────────── */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.table th {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  text-align: center;
+  color: var(--text);
+}
+
+.table tbody tr {
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.table tbody tr:hover { background: rgba(0,200,255,0.04); }
+
+/* Loss table rows shouldn't act as links */
+.tableStatic tbody tr { cursor: default; }
+.tableStatic tbody tr:hover { background: transparent; }
+.tableStatic tr.rowActive { background: rgba(0,200,255,0.06); }
+
+.clickLink {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+}
+.clickLink:hover { text-decoration: underline; }
+
+/* ── Fleet list pending badge ───────────────────────────────────────────── */
+
+.pendingBadge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 7px;
+  background: rgba(255,152,0,0.14);
+  border: 1px solid rgba(255,152,0,0.3);
+  color: var(--buy);
+}
+
+.capBadgeInline {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* ── Status badge ───────────────────────────────────────────────────────── */
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.badgeOpen    { background: rgba(0,230,118,0.12); color: var(--sell); border: 1px solid rgba(0,230,118,0.25); }
+.badgeClosed  { background: rgba(90,122,138,0.12); color: var(--text-dim); border: 1px solid var(--border); }
+.badgePending { background: rgba(255,152,0,0.12); color: var(--buy); border: 1px solid rgba(255,152,0,0.25); }
+.badgeApproved { background: rgba(0,230,118,0.12); color: var(--sell); border: 1px solid rgba(0,230,118,0.25); }
+.badgeRejected { background: rgba(255,68,68,0.12); color: var(--danger); border: 1px solid rgba(255,68,68,0.25); }
+
+/* ── Empty / loading / error states ─────────────────────────────────────── */
+
+.empty {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 48px 0;
+  letter-spacing: 0.06em;
+}
+
+.loading {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-dim);
+  text-align: center;
+  padding: 48px 0;
+  letter-spacing: 0.1em;
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.error {
+  background: rgba(255,68,68,0.08);
+  border: 1px solid rgba(255,68,68,0.3);
+  color: #ff6b6b;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* ── Panel (form + detail card) ────────────────────────────────────────── */
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panelTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.payHint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ── Form fields ────────────────────────────────────────────────────────── */
+
+.fieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.input,
+.textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 10px;
+  width: 100%;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.input:focus,
+.textarea:focus { border-color: var(--accent-dim); }
+.textarea { resize: vertical; min-height: 80px; }
+
+.formActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ── Fleet detail header ────────────────────────────────────────────────── */
+
+.detailLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.detailHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detailMeta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.detailPing {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-dim);
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.detailActions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.detailActionsRow {
+  display: flex;
+  gap: 10px;
+}
+
+.leaderTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  color: var(--accent);
+  background: rgba(0,200,255,0.07);
+  border: 1px solid var(--accent-dim);
+}
+
+/* ── Cap badge (in detail meta) ─────────────────────────────────────────── */
+
+.capBadge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  background: rgba(0,200,255,0.07);
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+/* ── Stats row ──────────────────────────────────────────────────────────── */
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.statsRowDetail {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.statCard {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  min-width: 0;
+}
+.statCardWide  { /* no-op: cards are equal width in grid */ }
+.statCardSuccess { border-color: rgba(0,230,118,0.25); }
+.statCardWarning { border-color: rgba(255,152,0,0.25); }
+.statCardDanger  { border-color: rgba(255,68,68,0.25); }
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  line-height: 1.2;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.statValue {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+.statCardSuccess .statValue { color: var(--sell); }
+.statCardWarning .statValue { color: var(--buy); }
+.statCardDanger  .statValue { color: var(--danger); }
+
+/* ── Approve/reject action panel ────────────────────────────────────────── */
+
+.actionPanel {
+  background: var(--bg-panel);
+  border: 1px solid var(--accent-dim);
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-margin-top: 16px;
+}
+
+.actionPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.actionPanelTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+/* ── Loss table extras ──────────────────────────────────────────────────── */
+
+.notesCell {
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.paymentAmt {
+  color: var(--sell);
+  font-weight: 600;
+}
+
+.rejReason {
+  font-size: 11px;
+  color: var(--danger);
+  cursor: help;
+  margin-left: 2px;
+}
+
+/* ── Loss submission form ───────────────────────────────────────────────── */
+
+.lossForm {
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lossFormTitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4;
+}
+.checkboxRow input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.checkboxHint {
+  display: block;
+  color: var(--text-dim);
+  font-size: 10px;
+  margin-left: 0;
+  margin-top: 2px;
+}
+
+/* ── Cell helpers ───────────────────────────────────────────────────────── */
+
+.dim { color: var(--text-dim); }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (min-width: 641px) {
+  .detailLayout {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .detailLayout .detailHeader { flex: 1; min-width: 0; }
+}
+
+@media (max-width: 1024px) {
+  .statsRow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .statsRowDetail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .panel { padding: 16px 14px; }
+  .actionPanel { padding: 14px 16px; }
+  .topBar { flex-wrap: wrap; }
+  .formActions { flex-wrap: wrap; justify-content: flex-start; }
+  .detailActions { align-items: flex-start; }
+  .statsRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .statsRowDetail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .table th,
+  .table td { padding: 6px 8px; }
+}
+
+/* zKill preview */
+.zkillPreview { padding: 4px 0; font-family: var(--font-mono); font-size: 11px; display: flex; flex-direction: column; gap: 3px; }
+.previewOk { color: var(--sell); }
+.previewErr { color: var(--danger); }
+.previewWarn { color: #ff9800; }
+
+/* Loss filter bar */
+.lossFilterBar { display: flex; gap: 6px; padding: 8px 0; flex-wrap: wrap; align-items: center; }
+.statusPill {
+  border: 1px solid currentColor; background: transparent;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; padding: 2px 8px; cursor: pointer; opacity: 0.5;
+  transition: opacity 0.15s;
+}
+.statusPill:hover { opacity: 0.8; }
+.pillActive { opacity: 1; }
+.pill_pending  { color: var(--buy); }
+.pill_approved { color: var(--sell); }
+.pill_rejected { color: var(--danger); }
+.pillClear {
+  border: 1px solid var(--border); background: transparent; color: var(--text-dim);
+  font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; cursor: pointer;
+  transition: color 0.15s;
+}
+.pillClear:hover { color: var(--text); }
+
+/* Row status colors */
+.rowStatus_approved { background: rgba(0, 230, 118, 0.05) !important; }
+.rowStatus_rejected { background: rgba(255, 68, 68, 0.06) !important; }
+.rowStatus_pending {
+  background: rgba(255, 152, 0, 0.08) !important;
+  box-shadow: inset 3px 0 0 rgba(255, 152, 0, 0.55);
+}
+
+/* Highlight the viewer's own rows */
+.rowMine {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.rowMine.rowStatus_pending {
+  box-shadow: inset 3px 0 0 var(--accent), inset 6px 0 0 rgba(255, 152, 0, 0.55);
+}
+
+.submittedBy {
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.youTag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  background: var(--accent-glow);
+}
+
+/* Who approved/rejected a loss — dim audit line under the status badge */
+.decidedByInline {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  cursor: help;
+}
+
+/* Loss killed outside the current calendar month — amber caution, not an error */
+.killTimeOff { color: #ff9800; }
+.offMonthTag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ff9800;
+  border: 1px solid rgba(255,152,0,0.35);
+  background: rgba(255,152,0,0.10);
+}
+
+/* Ready-to-pay per-pilot expander + per-loss sub-rows */
+.expandBtn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0 6px 0 0;
+  font-family: var(--font-mono);
+}
+.expandBtn:hover { color: var(--accent); }
+.subRow td { background: rgba(255,255,255,0.02); }
+.subRowShip {
+  padding-left: 22px !important;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.subRowDate {
+  display: block;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Ready-to-pay rollup */
+.readyToPayHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.readyToPayHeader > :last-child { margin-left: auto; }
+
+/* Ready-to-pay: paid state */
+.rowPaid td { background: rgba(0, 230, 118, 0.05); }
+.paidCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.paidBadge {
+  font-family: var(--font-mono);
+  color: var(--sell);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.linkBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.linkBtn:hover:not(:disabled) { color: var(--accent); }
+.linkBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Inline rejection reason — visible without hover */
+.rejReasonInline {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--danger);
+  margin-top: 4px;
+  font-style: italic;
+  max-width: 220px;
+  white-space: normal;
+  line-height: 1.3;
+  text-align: left;
+}
+
+/* "X already paid" sub-line under the outstanding amount in Ready to Pay */
+.paidEarlier {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+/* View-only notice when user lacks approval rights */
+.viewOnlyNotice {
+  background: rgba(90, 122, 138, 0.08);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-dim);
+  padding: 9px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* Bulk-action bar above the loss table */
+.bulkBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 9px 14px;
+  background: rgba(0, 200, 255, 0.06);
+  border: 1px solid var(--accent-dim);
+}
+.bulkBarCount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.bulkBarSpacer { flex: 1; }
+
+.bulkFields {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.bulkFields .fieldRow { flex: 1; min-width: 140px; }
+
+.bulkPreview {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  padding: 10px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.checkboxCell input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Spinner for inline async feedback */
+.spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent-dim);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Monthly roundup — highlight the current month's row */
+.rowCurrentMonth { background: rgba(0, 200, 255, 0.06) !important; }

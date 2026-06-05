@@ -1,0 +1,9 @@
+.field { display: flex; flex-direction: column; gap: 4px; }
+.label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-dim); }
+.select {
+  font-family: var(--font-mono); font-size: 13px;
+  background: var(--bg); color: var(--text-bright);
+  border: 1px solid var(--border); padding: 7px 10px;
+  min-width: 240px; cursor: pointer;
+}
+.select:focus { outline: none; border-color: var(--accent); }

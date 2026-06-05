@@ -1,0 +1,56 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+
+.controls {
+  display: flex; align-items: flex-end; flex-wrap: wrap;
+  gap: 12px;
+  border: 1px solid var(--border); background: var(--bg-panel);
+  padding: 10px 14px;
+}
+.field { display: flex; flex-direction: column; gap: 4px; }
+.cLabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-dim); }
+.numInput {
+  font-family: var(--font-mono); font-size: 14px;
+  background: var(--bg); color: var(--text-bright);
+  border: 1px solid var(--border); padding: 6px 8px;
+  width: 70px;
+}
+.numInput:focus { outline: none; border-color: var(--accent); }
+.applyBtn {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.08em;
+  background: transparent; color: var(--accent);
+  border: 1px solid var(--accent); cursor: pointer;
+  padding: 6px 14px;
+  transition: background 0.15s;
+}
+.applyBtn:hover { background: rgba(0,200,255,0.1); }
+.spacer { flex: 1; }
+.cacheAge { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
+
+.summary {
+  display: flex; align-items: center;
+  border: 1px solid var(--border); background: var(--bg-panel); overflow: hidden;
+}
+.stat { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 16px 12px; gap: 4px; }
+.label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-dim); }
+.value { font-family: var(--font-mono); font-size: 22px; color: var(--text-bright); letter-spacing: -0.01em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.subValue { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.02em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.share { color: var(--accent) !important; }
+.sell  { color: var(--sell); text-shadow: 0 0 12px rgba(0,230,118,0.2); }
+.buy   { color: var(--buy);  text-shadow: 0 0 12px rgba(255,152,0,0.2); }
+.split { color: var(--accent); text-shadow: 0 0 12px rgba(0,200,255,0.15); }
+.divider { width: 1px; height: 50px; background: var(--border); }
+
+@media (max-width: 640px) {
+  .stat { padding: 10px 4px; gap: 3px; min-width: 0; }
+  .value { font-size: 14px; letter-spacing: -0.02em; }
+  .label { font-size: 9px; }
+  .subValue { font-size: 10px; }
+  .divider { height: 36px; }
+}
+
+@media (max-width: 420px) {
+  .summary { flex-wrap: wrap; }
+  .stat { flex: 1 1 32%; padding: 8px 4px; }
+  .divider { display: none; }
+}

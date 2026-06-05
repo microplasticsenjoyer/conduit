@@ -1,0 +1,88 @@
+.wrapper { border: 1px solid var(--border); overflow-x: auto; }
+
+.table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 13px; }
+
+thead { background: rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1; }
+
+.table th {
+  padding: 9px 12px; text-align: center; font-size: 10px; letter-spacing: 0.1em;
+  color: var(--text-dim); border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none; white-space: nowrap; transition: color 0.15s;
+}
+.table th:hover { color: var(--accent); }
+.thName { text-align: left !important; }
+
+.table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover { background: rgba(0,200,255,0.03); }
+
+.unknown { opacity: 0.5; }
+.tdName { text-align: left; color: var(--text); max-width: 280px; }
+.tdNum { text-align: center; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.sell { color: var(--sell) !important; }
+.buy  { color: var(--buy)  !important; }
+.volCell { color: var(--text-dim) !important; font-size: 11px; }
+
+.thSpark { text-align: center !important; cursor: default !important; width: 80px; }
+.thSpark:hover { color: var(--text-dim) !important; }
+.tdSpark { text-align: center; color: var(--text-dim); padding: 4px 8px !important; }
+.dim { color: var(--text-dim); opacity: 0.5; }
+
+.link { color: var(--text); text-decoration: none; transition: color 0.15s; }
+.link:hover { color: var(--accent); text-decoration: underline; }
+
+.unknownName { color: var(--text-dim); }
+.unknownTag {
+  display: inline-block; background: rgba(255,68,68,0.15); color: var(--danger);
+  font-size: 10px; padding: 0 4px; margin-left: 4px; border: 1px solid rgba(255,68,68,0.3);
+}
+
+.danger { color: var(--danger) !important; }
+
+.warnBanner {
+  font-family: var(--font-mono); font-size: 12px;
+  color: #ffb84d; background: rgba(255, 152, 0, 0.07);
+  border: 1px solid rgba(255, 152, 0, 0.35);
+  padding: 8px 12px; margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.rowLight { background: rgba(255, 152, 0, 0.04); }
+.lightTag {
+  display: inline-block;
+  background: rgba(255, 152, 0, 0.15); color: #ffb84d;
+  border: 1px solid rgba(255, 152, 0, 0.4);
+  font-size: 10px; padding: 0 5px; margin-left: 6px;
+  letter-spacing: 0.06em;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 6px 0 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.toolbarBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.toolbarBtn:hover { color: var(--text); border-color: var(--border-bright); }
+.toolbarBtnActive { color: var(--accent); border-color: var(--accent-dim); }
+
+@media (max-width: 640px) {
+  .table { font-size: 12px; }
+  .table th { padding: 7px 8px; font-size: 9px; }
+  .table td { padding: 6px 8px; }
+  .tdName { max-width: 160px; }
+  .tdSpark { padding: 4px 4px !important; }
+  .thSpark { width: 64px; }
+  .lightTag, .unknownTag { white-space: nowrap; }
+}

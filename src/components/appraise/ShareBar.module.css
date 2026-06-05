@@ -1,0 +1,52 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 200, 255, 0.03);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent-dim);
+  white-space: nowrap;
+}
+
+.url {
+  color: var(--text-dim);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  color: var(--text-dim);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.copied {
+  border-color: var(--sell-dim) !important;
+  color: var(--sell) !important;
+}

@@ -1,0 +1,136 @@
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  flex-wrap: wrap;
+  justify-content: center;
+  /* No overflow clipping: needed so absolutely-positioned dropdowns are
+     visible. Narrow viewports wrap tabs onto a second row instead of
+     hiding them behind a menu. */
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-dim);
+  padding: 10px 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.tab:hover { color: var(--accent-dim); }
+
+.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Highlighted tab — pulse red to grab attention. Used for the SRP tab
+ * which sees the most traffic. */
+.tabHighlight {
+  color: var(--danger);
+  animation: tabHighlightPulse 2.2s ease-in-out infinite;
+}
+.tabHighlight:hover {
+  color: #ff7676;
+}
+.tabHighlight.active {
+  color: var(--danger);
+  border-bottom-color: var(--danger);
+  text-shadow: 0 0 10px rgba(255, 68, 68, 0.7);
+  animation: none;
+}
+
+@keyframes tabHighlightPulse {
+  0%, 100% { text-shadow: 0 0 4px rgba(255, 68, 68, 0.35); }
+  50%      { text-shadow: 0 0 12px rgba(255, 68, 68, 0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabHighlight { animation: none; text-shadow: 0 0 8px rgba(255, 68, 68, 0.6); }
+}
+
+.caret {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+/* Group dropdown ---------------------------------------------------------- */
+
+.groupRoot {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-top: 1px solid var(--accent-dim);
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dropdownItem {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.dropdownItem:hover {
+  color: var(--accent);
+  background: rgba(0, 200, 255, 0.05);
+}
+.dropdownItemActive {
+  color: var(--accent);
+  background: rgba(0, 200, 255, 0.06);
+}
+
+/* Sub-tab variant (for use inside a tab like Alliance Finances) ----------- */
+
+.tabsSub {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.tabsSub .tab {
+  padding: 8px 14px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+/* Narrow viewports: tighten tab padding so wrapped rows feel compact. */
+@media (max-width: 640px) {
+  .tab {
+    padding: 8px 12px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .tabsSub .tab {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+}

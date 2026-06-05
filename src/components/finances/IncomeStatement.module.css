@@ -1,0 +1,337 @@
+/* Income Statement — red/green color-coded variant of the Fund layout.
+ * Most base styles (panel, btn, table) are inherited from Fund.module.css.
+ * This file only carries layout tweaks and the inflow/outflow color rules. */
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Color-coded amounts ---------------------------------------------------- */
+
+.amountInflow {
+  color: var(--sell);
+  font-weight: 700;
+}
+
+.amountOutflow {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* Direction badge — bigger and more obvious than the Fund kind badge */
+
+.dirBadge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 2px 9px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  min-width: 64px;
+  text-align: center;
+}
+
+.dirInflow {
+  color: var(--sell);
+  background: rgba(0, 230, 118, 0.14);
+  border: 1px solid rgba(0, 230, 118, 0.5);
+}
+
+.dirOutflow {
+  color: var(--danger);
+  background: rgba(255, 68, 68, 0.14);
+  border: 1px solid rgba(255, 68, 68, 0.5);
+}
+
+/* Row-level color coding — subtle tint so a glance reveals direction */
+
+.rowInflow td {
+  background: rgba(0, 230, 118, 0.04);
+  border-left: 3px solid rgba(0, 230, 118, 0.55);
+}
+.rowInflow td:first-child { padding-left: 12px; }
+
+.rowOutflow td {
+  background: rgba(255, 68, 68, 0.04);
+  border-left: 3px solid rgba(255, 68, 68, 0.55);
+}
+.rowOutflow td:first-child { padding-left: 12px; }
+
+/* Colored value text. Applied as a direct className since descendant
+ * selectors don't cross CSS-module boundaries. */
+.valueInflow { color: var(--sell); }
+.valueOutflow { color: var(--danger); }
+
+/* YTD strip — compact one-line summary above the month ledgers */
+
+.ytdStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.periodControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.periodTotals {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.ytdValue {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+/* Month section header — month label on left, totals on right */
+
+.monthHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.monthLabel {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.monthTotals {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Charts row — stacked bars + cumulative line side by side, donuts below */
+
+.chartsRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+.chartPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chartTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 4px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.loadMoreRow {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 12px;
+}
+
+/* Scrollable table body — applied only when a month has many entries */
+
+.scrollBody {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.scrollBody thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-panel);
+  z-index: 1;
+}
+
+.scrollFooter {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 6px;
+  text-align: right;
+}
+
+/* Sortable column headers */
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.sortable:hover {
+  color: var(--accent);
+}
+.sortArrow {
+  margin-left: 4px;
+  color: var(--text-dim);
+}
+.sortActive {
+  color: var(--accent);
+}
+
+/* Edit / delete icon buttons */
+
+.actionsCell {
+  white-space: nowrap;
+  width: 1px;
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  margin: 0 2px;
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1;
+  transition: color 0.1s, border-color 0.1s, background 0.1s;
+}
+.iconBtn:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: var(--accent-glow);
+}
+.iconBtnDanger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: rgba(255, 68, 68, 0.08);
+}
+
+.editingRow td {
+  background: rgba(0, 200, 255, 0.05) !important;
+  border-left-color: var(--accent) !important;
+}
+
+.editInput {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border-bright);
+  padding: 3px 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border-radius: 2px;
+}
+.editInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.editedMark {
+  display: inline-block;
+  margin-left: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Undo toast */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-bright);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+.toastText {
+  color: var(--text);
+}
+.toastBtn {
+  background: transparent;
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.toastBtn:hover {
+  background: var(--accent-glow);
+}
+
+/* Tighten on narrow screens. */
+@media (max-width: 900px) {
+  .chartsRow { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { max-width: 100%; }
+  .monthTotals { font-size: 11px; gap: 6px; }
+  .monthLabel { font-size: 13px; }
+  .toast { left: 16px; right: 16px; bottom: 16px; }
+}

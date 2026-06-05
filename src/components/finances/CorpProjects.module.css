@@ -1,0 +1,341 @@
+/* Corp Projects tab — leaderboard + project cards. Reuses SrpTab/Fund tokens. */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  padding: 7px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) { background: var(--accent-glow); border-color: var(--accent); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.loading {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-dim);
+  letter-spacing: 0.1em;
+  padding: 40px 0;
+  text-align: center;
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.errBox {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--danger);
+  border: 1px solid rgba(255,68,68,0.4);
+  background: rgba(255,68,68,0.06);
+  padding: 12px 14px;
+}
+
+.note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  padding: 10px 14px;
+}
+.note code {
+  color: var(--accent);
+  font-size: 10.5px;
+}
+
+.empty {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 32px 0;
+  letter-spacing: 0.04em;
+}
+
+.section { display: flex; flex-direction: column; gap: 10px; }
+
+.h3 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+
+/* ── Leaderboard table ── */
+.tableWrap {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 440px;
+  -webkit-overflow-scrolling: touch;
+}
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1;
+}
+.table {
+  /* Full-width: the share-bar column fills the remaining space, so stretching
+     no longer leaves a dead gap between Pilot and the value columns. */
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.table th {
+  text-align: left;
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+.table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  color: var(--text);
+}
+.table tbody tr:hover { background: rgba(0,200,255,0.04); }
+.table th.center,
+.table td.center { text-align: center; }
+.dim { color: var(--text-dim); }
+.rankCol { width: 1%; white-space: nowrap; text-align: center; color: var(--text-dim); }
+.amount { color: var(--sell); font-weight: 600; }
+
+.shareCell { width: 30%; min-width: 160px; padding: 8px 10px; }
+.shareRow { display: flex; align-items: center; gap: 10px; }
+.shareBar {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.shareFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+  opacity: 0.7;
+}
+.sharePct {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  min-width: 44px;
+  text-align: right;
+}
+
+.lpTotals {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sell);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.lpTotals strong { color: var(--text-bright); font-weight: 700; }
+
+.rank1 td { background: rgba(255, 200, 0, 0.07); }
+.rank2 td { background: rgba(200, 210, 220, 0.06); }
+.rank3 td { background: rgba(205, 127, 50, 0.07); }
+
+.pilot { display: inline-flex; align-items: center; gap: 8px; }
+.portrait {
+  width: 22px; height: 22px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Archived projects ── */
+.archiveList { display: flex; flex-direction: column; gap: 6px; }
+.archiveItem {
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+.archiveSummary {
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.archiveSummary::-webkit-details-marker { display: none; }
+.archiveSummary::before {
+  content: "▸";
+  color: var(--accent);
+  font-size: 9px;
+  align-self: center;
+}
+.archiveItem[open] .archiveSummary::before { content: "▾"; }
+.archiveSummary:hover { background: var(--accent-glow); }
+.archiveName {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-right: auto;
+}
+.archiveMeta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+.archiveItem[open] .tableWrap { border-top: 1px solid var(--border); }
+
+/* ── Project cards ── */
+.projGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.projCard {
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.projHead { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.projName {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-bright);
+  line-height: 1.3;
+}
+.badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border: 1px solid var(--border-bright);
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.projMeta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bar {
+  position: relative;
+  height: 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.barFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+  opacity: 0.75;
+}
+.barLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-bright);
+  text-shadow: 0 0 4px rgba(0,0,0,0.7);
+}
+
+.projStats {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--sell);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.miniList {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.miniList li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+}
+.miniName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 600px) {
+  .table th, .table td { padding: 6px 8px; }
+  .projGrid { grid-template-columns: 1fr; }
+}

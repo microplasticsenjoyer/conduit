@@ -1,0 +1,172 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 640px;
+  width: 100%;
+}
+
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+}
+
+.cardHead {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.charRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.portrait {
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--border-bright);
+}
+
+.charName {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+
+.ok    { color: var(--sell); font-size: 13px; font-family: var(--font-mono); }
+.bad   { color: var(--danger); font-size: 13px; font-family: var(--font-mono); }
+.warn  { color: var(--buy); font-size: 13px; font-family: var(--font-mono); }
+.muted { color: var(--text-dim); font-size: 13px; font-family: var(--font-mono); }
+
+.notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: var(--accent-glow);
+  border: 1px solid var(--border-bright);
+  color: var(--text-bright);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.roleTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.roleTable th {
+  text-align: left;
+  color: var(--text-dim);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.roleTable td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.roleTable tbody tr:last-child td { border-bottom: none; }
+
+.kindBadge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  margin-right: 2px;
+}
+.kindBadge[data-kind="militia"] { color: var(--buy); border-color: var(--buy-dim); }
+.kindBadge[data-kind="title"]   { color: var(--accent); border-color: var(--accent-dim); }
+.kindBadge[data-kind="base"]    { color: var(--sell); border-color: var(--sell-dim); }
+
+.syncRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.btn {
+  background: var(--accent-glow);
+  border: 1px solid var(--border-bright);
+  color: var(--accent);
+  padding: 7px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+.btn:disabled { opacity: 0.5; cursor: default; }
+
+.btnGhost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.btnGhost:hover { border-color: var(--danger); color: var(--danger); }
+
+.loading {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-dim);
+  letter-spacing: 0.1em;
+  padding: 40px 0;
+  text-align: center;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.error {
+  background: rgba(255, 68, 68, 0.08);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  color: #ff6b6b;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
