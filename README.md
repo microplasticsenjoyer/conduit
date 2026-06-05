@@ -9,9 +9,9 @@
   <img src="https://img.shields.io/badge/EVE%20SSO-PKCE-1f6feb?style=flat-square" alt="EVE SSO PKCE">
   <img src="https://img.shields.io/badge/Discord-OAuth%20%2B%20Bot-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord">
   <br>
+  <br>
   <img src="https://img.shields.io/badge/version-0.18.0-5cffb0?style=flat-square" alt="version 0.18.0">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license">
-  <img src="https://img.shields.io/badge/status-scrubbed%20reference-orange?style=flat-square" alt="scrubbed reference implementation">
+  <img src="https://img.shields.io/badge/status-fully%20functioning-red?style=flat-square" alt="scrubbed reference implementation">
 </p>
 
 > EVE Online corp toolkit — item appraiser, LP-store calculator, SRP (ship-replacement) tracker, doctrine inventory, alliance finances (income statement, trust fund, corp-project leaderboard), and Discord role sync. Paste a cargo scan, pay a fleet loss, or grant Discord roles from in-game corp titles — all in one place.
@@ -32,9 +32,10 @@
 Everything you need to stand up, configure, and deploy your own deployment —
 EVE/Supabase/Discord setup, Cloudflare deploy, config-value reference, full
 project structure / database schema / API surface, and troubleshooting — lives
-in **[docs/INSTALL.md](docs/INSTALL.md)**.
+in **[docs/INSTALL.md](docs/INSTALL.md)**. 
 
 The best part about this? You can run your own instance completely free. No VPS needed!
+
 ---
 
 ## Table of contents
